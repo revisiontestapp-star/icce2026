@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICCE-26 | International Conference on Comprehensive Education</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #002147; /* Loyola/Academic Blue */
+            --highlight-gold: #FFD700;
+            --text-dark: #333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--highlight-gold); }
+        
+        nav ul { display: flex; gap: 20px; }
+        nav a:hover { color: var(--highlight-gold); transition: 0.3s; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 33, 71, 0.85), rgba(0, 33, 71, 0.85)), url('https://via.placeholder.com/1600x900?text=Conference+Hall');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 30px; color: var(--highlight-gold); }
+        
+        .main-theme-banner {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid var(--highlight-gold);
+        }
+        
+        .main-theme-banner h3 { font-style: italic; font-size: 1.8rem; }
+
+        .btn {
+            background-color: var(--highlight-gold);
+            color: var(--primary-blue);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        .btn:hover { transform: scale(1.05); background-color: #fff; }
+
+        /* --- HOST INSTITUTE SECTION (Key Request) --- */
+        .host-section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 80px 10%;
+            align-items: center;
+            background-color: var(--white);
+            gap: 40px;
+        }
+
+        .host-content { flex: 1; }
+        .host-content h4 { color: #666; text-transform: uppercase; letter-spacing: 2px; }
+        .host-content h2 { color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px; }
+        .host-content p { font-size: 1.1rem; margin-bottom: 15px; }
+        
+        .host-img-container { flex: 1; text-align: center; }
+        .host-img-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 5px solid var(--primary-blue);
+        }
+
+        /* --- THEMES GRID (From Chat) --- */
+        .core-themes {
+            background-color: var(--light-bg);
+            padding: 60px 10%;
+            text-align: center;
+        }
+        .core-themes h2 { margin-bottom: 40px; color: var(--primary-blue); }
+        
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .theme-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--primary-blue);
+        }
+        .theme-box h3 { color: var(--primary-blue); font-size: 1.2rem; }
+
+        /* --- SCHEDULE (From Proposal) --- */
+        .schedule-section {
+            padding: 60px 10%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 20px 0;
+        }
+        .schedule-date { font-weight: bold; color: var(--highlight-gold); width: 20%; }
+        .schedule-desc { width: 75%; }
+
+        /* --- TOPICS (From Flyer) --- */
+        .topics-section { padding: 60px 10%; background: var(--white); }
+        .topics-list {
+            column-count: 2;
+            column-gap: 40px;
+        }
+        .topics-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .topics-list li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #888;
+            padding: 40px 10%;
+            text-align: center;
+        }
+        footer a { color: var(--highlight-gold); }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .host-section { flex-direction: column; }
+            .topics-list { column-count: 1; }
+            .schedule-row { flex-direction: column; }
+            .schedule-date { margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ICCE-26</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#host">Host Institute</a></li>
+                <li><a href="#themes">Themes</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>ICCE-26</h1>
+        <h2>The Third International Conference on Comprehensive Education</h2>
+        
+        <div class="main-theme-banner">
+            <h3>"Voice to Voiceless: Disability Inclusion"</h3>
+        </div>
+
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">
+            JULY 8-12, 2026 | DELHI, INDIA
+        </p>
+
+        <a href="mailto:icce.international@gmail.com" class="btn">Submit Proposal</a>
+    </section>
+
+    <section id="host" class="host-section">
+        <div class="host-content">
+            <h4>Organized & Hosted By</h4>
+            <h2>LISOR</h2>
+            <h3>Loyola Institute for Social Research</h3>
+            <p style="font-weight: bold; font-size: 1.2rem; color: #555;">
+                Loyola College, Vettavalam<br>
+                <span style="font-size: 1rem; font-weight: normal;">(A branch of Loyola College, Chennai)</span>
+            </p>
+            <p>
+                We are proud to host ICCE-26, bringing together global experts to foster sustainable growth and empower abilities. Join us in our mission to transform lives through comprehensive education.
+            </p>
+        </div>
+        <div class="host-img-container">
+            <img src="host.jpg" alt="Loyola College Vettavalam">
+        </div>
+    </section>
+
+    <section id="themes" class="core-themes">
+        <h2>Conference Core Themes</h2>
+        <div class="theme-grid">
+            <div class="theme-box">
+                <h3>Transforming Lives of Persons with Disabilities</h3>
+            </div>
+            <div class="theme-box">
+                <h3>Empowering Abilities for Sustainable Growth</h3>
+            </div>
+            <div class="theme-box">
+                <h3>Transforming Lives through Disability Inclusion</h3>
+            </div>
+            <div class="theme-box">
+                <h3>Voice to Voiceless: Disability Inclusion</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule-section">
+        <h2 style="text-align: center; margin-bottom: 40px;">Event Schedule</h2>
+        
+        <div class="schedule-row">
+            <div class="schedule-date">July 8, 2026</div>
+            <div class="schedule-desc">
+                <strong>Pre-Conference Workshop</strong><br>
+                Focus: Augmentative and Alternative Communication (AAC) for individuals with autism and developmental conditions[cite: 38].
+            </div>
+        </div>
+
+        <div class="schedule-row">
+            <div class="schedule-date">July 9-10, 2026</div>
+            <div class="schedule-desc">
+                <strong>International Conference</strong><br>
+                Featuring multidisciplinary panels, Indian self-advocate speakers, and global researchers[cite: 39].
+            </div>
+        </div>
+
+        <div class="schedule-row">
+            <div class="schedule-date">July 11-12, 2026</div>
+            <div class="schedule-desc">
+                <strong>Post-Conference Workshop</strong><br>
+                Led by Dr. Peter Vermeulen. Focus: Practical strategies for supporting autistic youth and adults[cite: 40].
+            </div>
+        </div>
+    </section>
+
+    <section class="topics-section">
+        <h2 style="color: var(--primary-blue); margin-bottom: 30px;">Call for Proposals: Key Topics</h2>
+        <ul class="topics-list">
+            <li>Artificial Intelligence & Assistive Technology [cite: 7, 8]</li>
+            <li>Post-Secondary/Higher Education [cite: 9]</li>
+            <li>Vocational Training & Employment [cite: 10]</li>
+            <li>Transition to Adulthood [cite: 11]</li>
+            <li>Social & Emotional Well-being [cite: 12]</li>
+            <li>Independent Living [cite: 13]</li>
+            <li>Self-Advocacy [cite: 14]</li>
+            <li>Sexuality, Relationships & Marriage [cite: 15, 16]</li>
+            <li>Neurodiversity in the Workplace [cite: 17, 18]</li>
+        </ul>
+        <div style="text-align: center; margin-top: 40px;">
+            <p>Scan QR code on flyer or email us.</p>
+        </div>
+    </section>
+
+    <section style="padding: 40px 10%; background: #eee; text-align: center;">
+        <h3 style="color: #666; margin-bottom: 20px;">In Collaboration With</h3>
+        <p>Action for Autism (Delhi) | IIT Delhi | Adelphi University (New York) | Bayberry Inc. (California) | PYSSUM (Lucknow) [cite: 36, 49-55]</p>
+    </section>
+
+    <footer>
+        <p><strong>Contact Us</strong></p>
+        <p>Email: <a href="mailto:icce.international@gmail.com">icce.international@gmail.com</a> [cite: 24]</p>
+        <p>Website: <a href="http://www.icce-international.org">www.icce-international.org</a> [cite: 26]</p>
+        <p>&copy; 2026 ICCE-26 & LISOR. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
